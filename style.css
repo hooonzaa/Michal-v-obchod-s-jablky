@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 4vh);
+    gap: 1vh;
+}
+
+.day {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    cursor: pointer;
+    width: 3vh;
+}
+
+.reservation-form {
+    display: none;
+}
+
+#reservations {
+    margin-top: 20px;
+}
