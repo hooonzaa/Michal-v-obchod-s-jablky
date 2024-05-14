@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
- 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michalův obchod s jablky</title>
-    
+   <link rel="stylesheet" href="style.css">
 </head>
- 
 <body>
     <h1>Michalův obchod s jablky</h1>
- 
+
     <div id="calendar"></div>
- 
+
     <div id="reservationForm" class="reservation-form">
-        <h2>Rezervace auta</h2>
-        <form id="reservation">
+        <h2>Rezervace</h2>
+        <form id="reservationForm">
             <label for="name">Jméno:</label>
             <input type="text" id="name" required><br>
             <label for="time">Čas:</label>
-            <input type="text" id="time" required><br>
+            <input type="time" id="time" required><br>
             <label for="numOfPeople">Počet osob:</label>
             <input type="number" id="numOfPeople" required><br>
-            <button type="submit">Rezervovat</button>
+            <label for="date">Datum:</label>
+            <input type="date" id="date" required><br>
+            <button type="button" onclick="submitReservation()">Rezervovat</button>
         </form>
     </div>
- 
+
     <div id="reservations"></div>
- 
     <script src="script.JS"></script>
 </body>
- 
 </html>

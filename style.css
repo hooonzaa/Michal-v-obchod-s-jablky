@@ -1,11 +1,24 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
 }
 
 #calendar {
     display: grid;
-    grid-template-columns: repeat(7, 4vh);
-    gap: 1vh;
+    grid-template-columns: repeat(7, 30px);
+    gap: 5px;
+    margin-bottom: 20px;
 }
 
 .day {
@@ -13,13 +26,74 @@ body {
     border: 1px solid #ccc;
     padding: 5px;
     cursor: pointer;
-    width: 3vh;
 }
 
 .reservation-form {
     display: none;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: 100%;
+}
+
+.reservation-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.reservation-form input {
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.reservation-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.reservation-form button:hover {
+    background-color: #0056b3;
 }
 
 #reservations {
-    margin-top: 20px;
+    max-width: 300px;
+    width: 100%;
+}
+
+#reservations h2 {
+    margin-top: 0;
+}
+
+.reservation {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation p {
+    margin: 5px 0;
+}
+
+.reservation button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.reservation button:hover {
+    background-color: #c82333;
 }
