@@ -1,8 +1,8 @@
-
 let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
 const calendarDiv = document.getElementById('calendar');
 const reservationForm = document.getElementById('reservationForm');
 const reservationsDiv = document.getElementById('reservations');
+const maxPeoplePerDay = 10; // Nastavení maximálního počtu osob na den
 
 function renderCalendar() {
     const today = new Date();
@@ -38,9 +38,20 @@ function showReservationForm(day) {
 function submitReservation() {
     const name = document.getElementById('name').value;
     const time = document.getElementById('time').value;
-    const numOfPeople = document.getElementById('numOfPeople').value;
+    const numOfPeople = parseInt(document.getElementById('numOfPeople').value);
     const date = document.getElementById('date').value;
-    reservations.push({ name, date, time, numOfPeople });
+    const repeat = document.getElementById('repeat').value;
+    const services = document.getElementById('services').value.trim();
+
+    const existingReservations = getReservationsForDate(date);
+    const totalPeople = existingReservations.reduce((acc, reservation) => acc + reservation.numOfPeople, numOfPeople);
+
+    if (totalPeople > maxPeoplePerDay) {
+        alert(`Bohužel, pro ${date} je již plno. Maximální počet osob na jeden den je ${maxPeoplePerDay}.`);
+        return;
+    }
+
+    reservations.push({ name, date, time, numOfPeople, repeat, services });
     localStorage.setItem('reservations', JSON.stringify(reservations));
     renderReservations();
     reservationForm.style.display = 'none';
@@ -57,15 +68,22 @@ function renderReservations() {
     reservations.forEach((reservation, index) => {
         const reservationDiv = document.createElement('div');
         reservationDiv.innerHTML = `
-        <p><strong>Jméno:</strong> ${reservation.name}</p>
-        <p><strong>Datum:</strong> ${reservation.date}</p>
-        <p><strong>Čas:</strong> ${reservation.time}</p>
-        <p><strong>Počet osob:</strong> ${reservation.numOfPeople}</p>
-        <button onclick="deleteReservation(${index})">Smazat</button>
-    `;
+            <p><strong>Jméno:</strong> ${reservation.name}</p>
+            <p><strong>Datum:</strong> ${reservation.date}</p>
+            <p><strong>Čas:</strong> ${reservation.time}</p>
+            <p><strong>Počet osob:</strong> ${reservation.numOfPeople}</p>
+            <p><strong>Opakování:</strong> ${reservation.repeat === 'none' ? 'Jednorázově' : reservation.repeat === 'weekly' ? 'Týdně' : 'Měsíčně'}</p>
+            <p><strong>Služby:</strong> ${reservation.services || 'Nespecifikováno'}</p>
+            <button onclick="deleteReservation(${index})">Smazat</button>
+        `;
         reservationsDiv.appendChild(reservationDiv);
     });
 }
+
+function getReservationsForDate(date) {
+    return reservations.filter(reservation => reservation.date === date);
+}
+
 
 renderCalendar();
 renderReservations();

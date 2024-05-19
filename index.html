@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michalův obchod s jablky</title>
-   <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Michalův obchod s jablky</h1>
+    <header>
+        <h1>Michalův obchod s lístky</h1>
+        </div>
+    </header>
 
     <div id="calendar"></div>
 
@@ -19,14 +22,18 @@
             <label for="time">Čas:</label>
             <input type="time" id="time" required><br>
             <label for="numOfPeople">Počet osob:</label>
-            <input type="number" id="numOfPeople" required><br>
+            <input type="number" id="numOfPeople" min="1" required><br>
             <label for="date">Datum:</label>
             <input type="date" id="date" required><br>
-            <button type="button" onclick="submitReservation()">Rezervovat</button>
+            <label for="repeat">Opakovat:</label>
+            <select id="repeat">
+                <option value="none">Jednorázově</option>
+                <option value="weekly">Týdně</option>
+                <option value="monthly">Měsíčně</option>
         </form>
     </div>
 
     <div id="reservations"></div>
-    <script src="script.JS"></script>
+    <script src="script.js"></script>
 </body>
 </html>
